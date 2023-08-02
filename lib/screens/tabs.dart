@@ -8,6 +8,7 @@ import 'package:meals/widgets/main_drawer.dart';
 import 'package:meals/providers/favorites_provider.dart';
 import 'package:meals/providers/filters_provider.dart';
 
+/// Initial filters to be used when no filters are applied.
 const kInitialFilters = {
   Filter.glutenFree: false,
   Filter.lactoseFree: false,
@@ -15,7 +16,13 @@ const kInitialFilters = {
   Filter.vegan: false,
 };
 
+/// A screen that displays a BottomNavigationBar with tabs for categories and favorites.
+///
+/// The `TabsScreen` is a `ConsumerStatefulWidget` that listens to the state of filtered meals and favorite meals using `filteredMealsProvider` and `favoriteMealsProvider`. It displays a `BottomNavigationBar` that allows the user to navigate between two screens: `CategoriesScreen` and `MealsScreen`. The `CategoriesScreen` displays a grid of meal categories, while the `MealsScreen` shows a list of the user's favorite meals. The screen also includes a `MainDrawer` that provides access to the filters screen.
 class TabsScreen extends ConsumerStatefulWidget {
+  /// Creates a [TabsScreen] instance.
+  ///
+  /// The [key] parameter is optional and represents the widget's key.
   const TabsScreen({super.key});
 
   @override
@@ -31,7 +38,10 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
     });
   }
 
-  void _setScreen(String identifier) async {
+  /// Navigates to the filters screen and waits for the user to make selections.
+  ///
+  /// When the user selects the "filters" option from the MainDrawer, this function is called, and it opens the filters screen using `Navigator.of(context).push`. It waits for the user to make selections on the filters screen and returns the chosen filters.
+  Future<void> _setScreen(String identifier) async {
     Navigator.of(context).pop();
     if (identifier == 'filters') {
       await Navigator.of(context).push<Map<Filter, bool>>(

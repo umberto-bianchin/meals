@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:meals/models/meal.dart';
 import 'package:meals/providers/favorites_provider.dart';
 
+/// A screen that displays the details of a particular meal.
+///
+/// The `MealDetailsScreen` is a `ConsumerWidget`, which listens to changes in the
+/// `favoriteMealsProvider` to determine if the current meal is marked as a favorite.
+/// It displays the meal's title, image, ingredients, and steps.
 class MealDetailsScreen extends ConsumerWidget {
+  /// Creates a [MealDetailsScreen] instance.
+  ///
+  /// The [meal] parameter is required and represents the meal for which the details
+  /// should be displayed.
   const MealDetailsScreen({
     super.key,
     required this.meal,
   });
 
+  /// The meal for which the details should be displayed.
   final Meal meal;
 
   @override
@@ -30,7 +39,7 @@ class MealDetailsScreen extends ConsumerWidget {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(
-                      wasAdded ? 'Meal added as a favorite.' : 'Meal remove.'),
+                      wasAdded ? 'Meal added as a favorite.' : 'Meal removed.'),
                 ),
               );
             },

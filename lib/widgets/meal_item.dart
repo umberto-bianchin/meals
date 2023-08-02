@@ -4,17 +4,30 @@ import 'package:transparent_image/transparent_image.dart';
 
 import 'package:meals/models/meal.dart';
 
+/// A widget representing a card displaying details of a meal.
+///
+/// The `MealItem` widget is used to show various details of a meal, including its image, title, duration, complexity, and affordability. It displays a card with a meal image at the top, followed by the meal's title and attributes at the bottom. The widget is wrapped in an `InkWell`, allowing it to be tappable.
 class MealItem extends StatelessWidget {
+  /// Creates a [MealItem] instance.
+  ///
+  /// The [key] parameter is optional and represents the widget's key.
+  /// The [meal] parameter is required and contains the meal object to display.
+  /// The [onSelectMeal] parameter is required and is a callback function to handle the tap event when the meal card is tapped.
   const MealItem({super.key, required this.meal, required this.onSelectMeal});
 
+  /// The meal object to display.
   final Meal meal;
+
+  /// A callback function to handle the tap event when the meal card is tapped.
   final void Function(Meal meal) onSelectMeal;
 
+  /// Gets the complexity of the meal as text.
   String get complexityText {
     return meal.complexity.name[0].toUpperCase() +
         meal.complexity.name.substring(1);
   }
 
+  /// Gets the affordability of the meal as text.
   String get affordabilityText {
     return meal.affordability.name[0].toUpperCase() +
         meal.affordability.name.substring(1);
@@ -35,9 +48,9 @@ class MealItem extends StatelessWidget {
         },
         child: Stack(
           children: [
-            FadeInImage(
-              placeholder: MemoryImage(kTransparentImage),
-              image: NetworkImage(meal.imageUrl),
+            FadeInImage.memoryNetwork(
+              placeholder: kTransparentImage,
+              image: meal.imageUrl,
               fit: BoxFit.cover,
               height: 200,
               width: double.infinity,

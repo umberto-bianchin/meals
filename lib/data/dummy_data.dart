@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:meals/models/category.dart';
 import 'package:meals/models/meal.dart';
 
+// List of available categories for the meals
 const availableCategories = [
   Category(
     id: 'c1',
@@ -56,6 +57,7 @@ const availableCategories = [
   ),
 ];
 
+// List of dummy meal data for testing and development
 const dummyMeals = [
   Meal(
     id: 'm1',
