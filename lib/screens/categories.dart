@@ -5,12 +5,17 @@ import 'package:meals/screens/meals.dart';
 import 'package:meals/widgets/category_grid_item.dart';
 import 'package:meals/models/meal.dart';
 
+/// A screen widget that displays a grid of recipe categories.
+///
+/// Users can explore different recipe categories and navigate to the
+/// [MealsScreen] to view recipes within a specific category.
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({
-    super.key,
+    Key? key,
     required this.availableMeals,
   });
 
+  /// A list of available meals in the app.
   final List<Meal> availableMeals;
 
   @override
@@ -25,6 +30,7 @@ class _CategoriesScreenState extends State<CategoriesScreen>
   void initState() {
     super.initState();
 
+    // Initialize the animation controller for the grid items.
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 300),
@@ -32,15 +38,18 @@ class _CategoriesScreenState extends State<CategoriesScreen>
       upperBound: 1,
     );
 
+    // Start the animation.
     _animationController.forward();
   }
 
   @override
   void dispose() {
+    // Dispose the animation controller to free up resources.
     _animationController.dispose();
     super.dispose();
   }
 
+  /// Navigates to the [MealsScreen] and displays the meals for the selected category.
   void _selectCategory(BuildContext context, Category category) {
     final filteredMeals = widget.availableMeals
         .where((meal) => meal.categories.contains(category.id))
