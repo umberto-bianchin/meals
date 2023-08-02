@@ -5,33 +5,44 @@ import 'package:meals/screens/meals.dart';
 import 'package:meals/widgets/category_grid_item.dart';
 import 'package:meals/models/meal.dart';
 
-/// A screen that displays a grid of meal categories.
-///
-/// The `CategoriesScreen` is a stateless widget that takes a [List] of [Meal]
-/// instances as [availableMeals]. It displays the available meal categories in a
-/// grid using the `GridView` widget. When a category is selected, it navigates to
-/// the [MealsScreen], passing the list of meals that belong to the selected category.
-class CategoriesScreen extends StatelessWidget {
-  /// Creates a [CategoriesScreen] instance with the provided [availableMeals].
-  ///
-  /// The [availableMeals] parameter is a [List] of [Meal] instances that contains
-  /// all the available meals in the application.
+class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({
     super.key,
     required this.availableMeals,
   });
 
-  /// A list of available meals in the application.
   final List<Meal> availableMeals;
 
-  /// Function to handle category selection.
-  ///
-  /// The `_selectCategory` function takes [context] and a [category] as input
-  /// and filters the [availableMeals] to get the list of meals that belong to
-  /// the selected category. It then navigates to the [MealsScreen], passing the
-  /// title of the selected category and the filtered list of meals as arguments.
+  @override
+  State<CategoriesScreen> createState() => _CategoriesScreenState();
+}
+
+class _CategoriesScreenState extends State<CategoriesScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 300),
+      lowerBound: 0,
+      upperBound: 1,
+    );
+
+    _animationController.forward();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
   void _selectCategory(BuildContext context, Category category) {
-    final filteredMeals = availableMeals
+    final filteredMeals = widget.availableMeals
         .where((meal) => meal.categories.contains(category.id))
         .toList();
 
@@ -47,25 +58,37 @@ class CategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView(
-      padding: const EdgeInsets.all(24),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: 3 / 2,
-        crossAxisSpacing: 20,
-        mainAxisSpacing: 20,
+    return AnimatedBuilder(
+      animation: _animationController,
+      child: GridView(
+        padding: const EdgeInsets.all(24),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 3 / 2,
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20,
+        ),
+        children: [
+          for (final category in availableCategories)
+            CategoryGridItem(
+                category: category,
+                onSelectCategory: () {
+                  _selectCategory(context, category);
+                }),
+        ],
       ),
-      children: [
-        // Iterate through the available categories and create a CategoryGridItem
-        // widget for each category.
-        for (final category in availableCategories)
-          CategoryGridItem(
-              category: category,
-              onSelectCategory: () {
-                // Call the _selectCategory function when a category is selected.
-                _selectCategory(context, category);
-              }),
-      ],
+      builder: (context, child) => SlideTransition(
+        position: Tween(
+          begin: const Offset(0, 0.3),
+          end: const Offset(0, 0),
+        ).animate(
+          CurvedAnimation(
+            parent: _animationController,
+            curve: Curves.easeInOut,
+          ),
+        ),
+        child: child,
+      ),
     );
   }
 }
