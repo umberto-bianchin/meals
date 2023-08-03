@@ -11,7 +11,7 @@ import 'package:meals/models/meal.dart';
 /// [MealsScreen] to view recipes within a specific category.
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({
-    Key? key,
+    super.key,
     required this.availableMeals,
   });
 
