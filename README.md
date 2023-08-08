@@ -45,6 +45,4 @@ All package dependencies and their versions can be found in the pubspec.yaml fil
 Meals is
 
 # About the Developers
-Meal was developed by a team of passionate developers. We aim to provide a delightful user experience for food lovers and enthusiasts through this app. If you have any questions or suggestions, feel free to contact us.
-* [@umberto-bianchin](https://www.https/github.com/umberto-bianchin)
-* [@ivanbrillo](https://www.github.com/ivanbrillo)
+Meal was developed by [@umberto-bianchin](https://www.https/github.com/umberto-bianchin) and [@ivanbrillo](https://www.github.com/ivanbrillo). We aim to provide a delightful user experience for food lovers and enthusiasts through this app. If you have any questions or suggestions, feel free to contact us.
