@@ -41,8 +41,5 @@ The app uses several packages to enhance its functionality, including:
 
 All package dependencies and their versions can be found in the pubspec.yaml file.
 
-# License
-Meals is
-
 # About the Developers
 Meal was developed by [@umberto-bianchin](https://www.https/github.com/umberto-bianchin) and [@ivanbrillo](https://www.github.com/ivanbrillo). We aim to provide a delightful user experience for food lovers and enthusiasts through this app. If you have any questions or suggestions, feel free to contact us.
