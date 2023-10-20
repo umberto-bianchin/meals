@@ -2,7 +2,7 @@
 
 ![Meal](https://your-image-url.com)
 
-Meals is a mobile application built with Flutter that helps users discover various recipes and meals. The app allows users to explore different meal categories, filter meals based on their dietary preferences, and mark their favorite recipes. Whether you're a seasoned chef or just starting in the kitchen, Cooking Up! has something for everyone.
+Meals is a mobile application built with Flutter that helps users discover various recipes and meals. The app allows users to explore different meal categories, filter meals based on their dietary preferences, and mark their favorite recipes.
 
 ## Features
 
@@ -40,6 +40,3 @@ The app uses several packages to enhance its functionality, including:
 - flutter_svg: For rendering SVG images.
 
 All package dependencies and their versions can be found in the pubspec.yaml file.
-
-# About the Developers
-Meal was developed by [@umberto-bianchin](https://www.https/github.com/umberto-bianchin) and [@ivanbrillo](https://www.github.com/ivanbrillo). We aim to provide a delightful user experience for food lovers and enthusiasts through this app. If you have any questions or suggestions, feel free to contact us.
